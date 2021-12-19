@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+#define dtype int
+#define endl '\n'
+#define mod 998244353
+#define case(t, c) cout<<"Case "<<t<<":"<<c
+
+int main() {
+    ios_base::sync_with_stdio(false), cin.tie(nullptr);
+    int t, te = 0;
+    cin >> t;
+    while (t--) {
+        long long n, x, y;
+        cin >> n >> x >> y;
+        vector<long long> vc(n);
+        for (auto &i: vc) {
+            cin >> i;
+
+        }
+        long long sum = 0, ans = 0;
+        for (int i = 0; i < x; ++i) {
+            if (sum + vc[i] > y) {
+                ans += vc[i] - y + sum;
+                vc[i] = y - sum;
+            }
+
+            sum += vc[i];
+        }
+        for (int i = x; i < n; ++i) {
+            sum -= vc[i - x];
+            if (sum + vc[i] > y) {
+                ans += vc[i] - y + sum;
+                vc[i] = y - sum;
+            }
+            sum += vc[i];
+
+        }
+        cout << ans << endl;
+
+    }
+
+
+    return 0;
+}
