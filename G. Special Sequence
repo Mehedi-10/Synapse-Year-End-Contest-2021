@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+#define dtype int
+#define endl '\n'
+#define mod 998244353
+#define case(t, c) cout<<"Case "<<t<<":"<<c
+vector<long long> vc;
+vector<int> buti;
+long long memo[100001][2];
+
+long long dp(int i, bool ok) {
+    if (i == vc.size())
+        return 0;
+    long long &ans = memo[i][ok];
+    if (ans != LLONG_MIN)
+        return ans;
+    if (buti[i] == 1)
+        return ans = dp(i + 1, !ok) + (ok ? -vc[i] : vc[i]);
+    else
+        return ans = max(dp(i + 1, !ok) + (ok ? -vc[i] : vc[i]), dp(i + 1, ok));
+}
+
+int main() {
+    ios_base::sync_with_stdio(false), cin.tie(nullptr);
+    int t, te = 0;
+    cin >> t;
+    while (t--) {
+        long long n, x, y;
+        cin >> n;
+        vc.clear();
+        buti.clear();
+        vc.resize(n);
+        buti.resize(n);
+        for (auto &i: vc) {
+            cin >> i;
+        }
+        for (auto &i: buti) {
+            cin >> i;
+        }
+        for (int i = 0; i <= n; ++i) {
+            memo[i][0] = memo[i][1] = LLONG_MIN;
+        }
+        cout << dp(0, 0) << endl;
+
+    }
+
+
+    return 0;
+}
