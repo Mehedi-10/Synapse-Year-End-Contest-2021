@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+#define dtype int
+#define endl '\n'
+#define mod 998244353
+#define case(t, c) cout<<"Case "<<t<<":"<<c
+
+int main() {
+    ios_base::sync_with_stdio(false), cin.tie(nullptr);
+    int t,te=0;
+    cin>>t;
+    while (t--)
+    {
+       int n;
+       cin>>n;
+       vector<string>vc(n);
+       for (auto &i : vc) {
+         cin>>i;
+       }
+       int run=0,wic=0;
+       for (auto &i : vc) {
+         if(i.back()!='*')
+             wic++;
+         else
+             i.pop_back();
+         run+=stoi(i);
+       }
+       case(++te,' ');
+       if(wic==0)
+           cout<<-1<<endl;
+       else
+           cout<<run/wic<<endl;
+    }
+
+
+    return 0;
+}
