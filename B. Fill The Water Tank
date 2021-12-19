@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+#define dtype int
+#define endl '\n'
+#define mod 998244353
+#define case(t, c) cout<<"Case "<<t<<":"<<c
+
+int main() {
+    ios_base::sync_with_stdio(false), cin.tie(nullptr);
+    int t,te=0;
+    cin>>t;
+    while (t--)
+    {
+        int a,b;
+        cin>>a>>b;
+        case(++te,' ');
+        cout<<a*b/(b-a)<<endl;
+    }
+
+
+    return 0;
+}
