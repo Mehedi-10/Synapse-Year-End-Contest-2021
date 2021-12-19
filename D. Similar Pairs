@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+#define dtype int
+#define endl '\n'
+#define mod 998244353
+#define case(t, c) cout<<"Case "<<t<<":"<<c
+
+int main() {
+    ios_base::sync_with_stdio(false), cin.tie(nullptr);
+    int t, te = 0;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        vector<string> vc(n);
+        vector<vector<int>> cnt(n, vector<int>(26, 0));
+        for (auto &i: vc) {
+            cin >> i;
+
+        }
+        sort(vc.begin(),vc.end());
+        for (int i = 0; i < n; ++i) {
+            for (auto &j : vc[i]) {
+              cnt[i][j-'A']++;
+            }
+        }
+        int m=INT_MAX;
+        pair<string ,string >p;
+        for (int i = 0; i < n; ++i) {
+            for (int j = i + 1; j < n; ++j) {
+                int dis = 0;
+                for (int k = 0; k < 26; ++k) {
+                    if (cnt[i][k] != cnt[j][k])
+                        dis++;
+                }
+                if(m>dis)
+                {
+                    p.first=vc[i];
+                    p.second=vc[j];
+                    m=dis;
+                } else if(m==dis)
+                {
+                    p=min(p,{vc[i],vc[j]});
+                }
+            }
+        }
+        cout<<p.first<<" "<<p.second<<endl;
+
+    }
+
+
+    return 0;
+}
